@@ -61,6 +61,11 @@ public class DevicePointMap_PLC_RanMeiZhengQi extends DevicePointMap {
         map.put("mo_jianwenshuidiandongfafankui", ByteField.Init(new MockField(), "mo_jianwenshuidiandongfafankui", 151, 4, "减温水电动阀反馈", "%"));
         map.put("mo_chuyangjiarediandongfafankui", ByteField.Init(new MockField(), "mo_chuyangjiarediandongfafankui", 155, 4, "除氧加热电动阀反馈", "%"));
         map.put("mo_zhaoqiyali", ByteField.Init(new MockField(), "mo_zhaoqiyali", 159, 4, "沼气压力", "kPa"));
+        map.put("mo_lutangchukouyanwen", ByteField.Init(new MockField(), "mo_lutangchukouyanwen", 163, 4, "炉膛出口烟温", "℃"));
+        map.put("mo_kongyuqichukouyanwen", ByteField.Init(new MockField(), "mo_kongyuqichukouyanwen", 167, 4, "空预器出口烟温", "℃"));
+        map.put("mo_shengmeiqichukouyanwen", ByteField.Init(new MockField(), "mo_shengmeiqichukouyanwen", 171, 4, "省煤器出口烟温", "℃"));
+
+
 
         map.put("se_qiluyalisheding", ByteField.Init(new SettingField(), "se_qiluyalisheding", 248, 4, "启炉压力设定", "MPa"));
         map.put("se_mubiaoyalisheding", ByteField.Init(new SettingField(), "se_mubiaoyalisheding", 252, 4, "目标压力设定", "MPa"));
