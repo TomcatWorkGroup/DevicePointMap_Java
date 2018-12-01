@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Device_PLC_RanYouDaoReYou extends Device_PLC {
+public class Device_PLC_RanYouDaoReYou extends Device_PLC_RanYou {
 
     public Device_PLC_RanYouDaoReYou() {
         this.BYTE_ARRAY_LENGTH = 245;
@@ -20,13 +20,5 @@ public class Device_PLC_RanYouDaoReYou extends Device_PLC {
         list.add(this.getBaseInfoFields().get(SdcSoftDevice.KEY_POINT_RUN_HOURS));
 
         return list;
-    }
-
-    private static final String KEY_POINT_RAN_SHAO_QI_STATUS = "ba_ranshaoqizhuangtai";
-
-    @Override
-    protected DeviceFieldForUI getPowerInfo()
-    {
-        return getBaseInfoFields().get(KEY_POINT_RAN_SHAO_QI_STATUS);
     }
 }

@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Device_PLC_DianReShui extends Device_PLC {
-
-    private  static  final  String KEY_POINT_JIA_RE_ZU = "mo_qidongjiarezushu";
+public class Device_PLC_DianReShui extends Device_PLC_Dian {
 
     public Device_PLC_DianReShui() {
         this.BYTE_ARRAY_LENGTH = 245;
@@ -29,9 +27,5 @@ public class Device_PLC_DianReShui extends Device_PLC {
         return list;
     }
 
-    @Override
-    protected DeviceFieldForUI getPowerInfo() {
-        return getMockFields().get(KEY_POINT_JIA_RE_ZU);
-    }
 
 }

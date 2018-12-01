@@ -14,7 +14,10 @@ public abstract class MockField extends ByteField {
         return value;
     }
 
-
+    @Override
+    public String getValueBitString(){
+        return String.format("%.2f",getValue());
+    }
     @Override
     public void setDeviceFieldForUIKey(DeviceFieldForUI fieldForUI) {
         fieldForUI.setKey(SdcSoftDevice.KEY_MOCK);

@@ -10,6 +10,6 @@ public class RunDaysField extends BaseInfoField {
     @Override
     public boolean haveValue(byte... bytes) {
         //value = new BigInteger(bytes).intValue();
-        return false;
+        return true;
     }
 }

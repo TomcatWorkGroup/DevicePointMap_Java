@@ -69,14 +69,12 @@ public class Device_CTL_NJRT_T2 extends Device_CTL {
         return 0;
     }
 
-    protected DeviceFieldForUI getPowerInfo() {
-        DeviceFieldForUI deviceFieldForUI = getOpenCloseFields().get(KEY_POINT_RAN_SHAO_QI);
+    protected int getPowerInfo() {
         Integer integer = (Integer)getOpenCloseFields().get(KEY_POINT_RAN_SHAO_QI_KONGZHI).getValue();
         if (integer > 0)
-            deviceFieldForUI.setValue(getOpenCloseFields().get(KEY_POINT_RAN_SHAO_QI_STATUS).getValue());
-        else
-            deviceFieldForUI.setValue(0);
-        return deviceFieldForUI;
+            return (Integer)getOpenCloseFields().get(KEY_POINT_RAN_SHAO_QI_STATUS).getValue();
+
+        return 0;
     }
 
     @Override

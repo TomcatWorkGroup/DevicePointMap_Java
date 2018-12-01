@@ -1,5 +1,7 @@
 package cn.com.sdcsoft.devices.meta;
 
+import cn.com.sdcsoft.devices.SdcSoftDevice;
+
 import java.io.Serializable;
 
 /**
@@ -61,4 +63,5 @@ public class DeviceFieldForUI implements Serializable{
     public void setValueString(String valueString) {
         this.valueString = valueString;
     }
+
 }

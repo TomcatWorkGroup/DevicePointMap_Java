@@ -29,10 +29,10 @@ public class Device_PLC_RanMeiZhengQi extends Device_PLC {
 
         return list;
     }
-    private static final String KEY_POINT_YIN_FENG_JI = "de_yinfeng_auto";
+    private static final String KEY_POINT_YIN_FENG_JI = KEY_POINT_YIN_FENG_FAN_1;
 
     @Override
-    protected DeviceFieldForUI getPowerInfo() {
-        return getDeviceFields().get(KEY_POINT_YIN_FENG_JI);
+    protected int getPowerInfo() {
+        return (Integer) getDeviceFields().get(KEY_POINT_YIN_FENG_JI).getValue()>0x7F?1:0;
     }
 }

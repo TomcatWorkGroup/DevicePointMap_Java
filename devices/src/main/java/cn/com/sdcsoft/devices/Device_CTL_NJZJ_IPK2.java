@@ -8,12 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Device_CTL_NJZJ_IPK2 extends Device_CTL {
-    private  static final String Device_Suffix_Beng = "_beng";
-    private  static final String Device_Suffix_Fan = "_fan";
+    private static final String Device_Suffix_Beng = "_beng";
+    private static final String Device_Suffix_Fan = "_fan";
 
-    private  static final String KEY_POINT_RAN_SHAO_QI = "de_ranshaoqi";
-    private  static final String KEY_POINT_JIA_RE_ZU = "se_jiarezushu";
-    private  static final String KEY_POINT_YIN_FENG_JI = "de_yinfengji_fan";
+    private static final String KEY_POINT_RAN_SHAO_QI = "de_ranshaoqi";
+    private static final String KEY_POINT_JIA_RE_ZU = "se_jiarezushu";
+    private static final String KEY_POINT_YIN_FENG_JI = "de_yinfengji_fan";
 
     @Override
     public String handleDeviceNo(byte[] bytes) {
@@ -31,108 +31,107 @@ public class Device_CTL_NJZJ_IPK2 extends Device_CTL {
         list.add(this.getBaseInfoFields().get(SdcSoftDevice.KEY_POINT_RUN_DAYS));
         list.add(this.getBaseInfoFields().get(SdcSoftDevice.KEY_POINT_RUN_HOURS));
 
-        if (map.get(SdcSoftDevice.KEY_POINT_POWER).getValue().equals(Power.Dian)) {
-            if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ReShui)) {
-                list.add(getUiItem(this.getDeviceFields(),"de_jiarezu"));
-                list.add(getUiItem(this.getMockFields(),"mo_chukouwendu"));
-                list.add(getUiItem(this.getMockFields(),"mo_rukouwendu"));
-                list.add(getUiItem(this.getBaseInfoFields(),"ba_shuixiangshuiweizhuangtai"));
-                list.add(getUiItem(this.getBaseInfoFields(),"ba_guolushuiweizhuangtai"));
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.DaoReYou)) {
+        if (this.powerVal == Power.Dian) {
+            list.add(getUiItem(this.getSettingFields(), "se_jiarezushu"));
+            if (this.mediaVal == Media.ReShui) {
+                list.add(getUiItem(this.getMockFields(), "mo_chukouwendu"));
+                list.add(getUiItem(this.getMockFields(), "mo_rukouwendu"));
+                list.add(getUiItem(this.getBaseInfoFields(), "ba_shuixiangshuiweizhuangtai"));
+                list.add(getUiItem(this.getBaseInfoFields(), "ba_guolushuiweizhuangtai"));
+            } else if (this.mediaVal == Media.DaoReYou) {
 
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ReFeng)) {
+            } else if (this.mediaVal ==Media.ReFeng) {
 
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ZhengQi)) {
-                list.add(getUiItem(this.getDeviceFields(),"de_jiarezu"));
-                list.add(getUiItem(this.getBaseInfoFields(),"ba_guolushuiweizhuangtai"));
+            } else if (this.mediaVal == Media.ZhengQi) {
+                list.add(getUiItem(this.getBaseInfoFields(), "ba_guolushuiweizhuangtai"));
                 if (this.getBaseInfoFields().containsKey("ba_guoluyalizhuangtai")) {
                     list.add(this.getBaseInfoFields().get("ba_guoluyalizhuangtai"));
                 } else {
-                    list.add(getUiItem(this.getMockFields(),"mo_zhengqiyali"));
+                    list.add(getUiItem(this.getMockFields(), "mo_zhengqiyali"));
                 }
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ZhenKong)) {
+            } else if (this.mediaVal == Media.ZhenKong) {
 
             }
-        } else if (map.get(SdcSoftDevice.KEY_POINT_POWER).getValue().equals(Power.Mei)) {
-            if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ReShui)) {
-                list.add(getUiItem(this.getMockFields(),"mo_paiyanwendu"));
-                list.add(getUiItem(this.getMockFields(),"mo_chukouwendu"));
-                list.add(getUiItem(this.getMockFields(),"mo_rukouwendu"));
+        } else if (this.powerVal== Power.Mei) {
+            if (this.mediaVal == Media.ReShui) {
+                list.add(getUiItem(this.getMockFields(), "mo_paiyanwendu"));
+                list.add(getUiItem(this.getMockFields(), "mo_chukouwendu"));
+                list.add(getUiItem(this.getMockFields(), "mo_rukouwendu"));
                 if (this.getBaseInfoFields().containsKey("ba_guoluyalizhuangtai")) {
                     list.add(this.getBaseInfoFields().get("ba_guoluyalizhuangtai"));
                 } else {
-                    list.add(getUiItem(this.getMockFields(),"mo_zhengqiyali"));
+                    list.add(getUiItem(this.getMockFields(), "mo_zhengqiyali"));
                 }
 
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.DaoReYou)) {
-                list.add(getUiItem(this.getMockFields(),"mo_paiyanwendu"));
-                list.add(getUiItem(this.getMockFields(),"mo_chukouwendu"));
-                list.add(getUiItem(this.getMockFields(),"mo_rukouwendu"));
+            } else if (this.mediaVal == Media.DaoReYou) {
+                list.add(getUiItem(this.getMockFields(), "mo_paiyanwendu"));
+                list.add(getUiItem(this.getMockFields(), "mo_chukouwendu"));
+                list.add(getUiItem(this.getMockFields(), "mo_rukouwendu"));
                 if (this.getBaseInfoFields().containsKey("ba_guoluyalizhuangtai")) {
                     list.add(this.getBaseInfoFields().get("ba_guoluyalizhuangtai"));
                 } else {
-                    list.add(getUiItem(this.getMockFields(),"mo_zhengqiyali"));
+                    list.add(getUiItem(this.getMockFields(), "mo_zhengqiyali"));
                 }
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ReFeng)) {
+            } else if (this.mediaVal == Media.ReFeng) {
 
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ZhengQi)) {
+            } else if (this.mediaVal == Media.ZhengQi) {
                 if (this.getBaseInfoFields().containsKey("ba_guoluyalizhuangtai")) {
                     list.add(this.getBaseInfoFields().get("ba_guoluyalizhuangtai"));
                 } else {
-                    list.add(getUiItem(this.getMockFields(),"mo_zhengqiyali"));
+                    list.add(getUiItem(this.getMockFields(), "mo_zhengqiyali"));
                 }
-                list.add(getUiItem(this.getMockFields(),"mo_paiyanwendu"));
-                list.add(getUiItem(this.getBaseInfoFields(),"ba_guolushuiweizhuangtai"));
+                list.add(getUiItem(this.getMockFields(), "mo_paiyanwendu"));
+                list.add(getUiItem(this.getBaseInfoFields(), "ba_guolushuiweizhuangtai"));
 
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ZhenKong)) {
+            } else if (this.mediaVal == Media.ZhenKong) {
 
             }
-        } else if (map.get(SdcSoftDevice.KEY_POINT_POWER).getValue().equals(Power.ShengWuZhi)) {
-            if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ReShui)) {
+        } else if (this.powerVal== Power.ShengWuZhi) {
+            if (this.mediaVal == Media.ReShui) {
 
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.DaoReYou)) {
+            } else if (this.mediaVal == Media.DaoReYou) {
 
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ReFeng)) {
+            } else if (this.mediaVal == Media.ReFeng) {
 
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ZhengQi)) {
+            } else if (this.mediaVal == Media.ZhengQi) {
 
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ZhenKong)) {
+            } else if (this.mediaVal == Media.ZhenKong) {
 
             }
-        } else if (map.get(SdcSoftDevice.KEY_POINT_POWER).getValue().equals(Power.YouQi)) {
-            if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ReShui)) {
-                list.add(getUiItem(this.getMockFields(),"mo_paiyanwendu"));
-                list.add(getUiItem(this.getMockFields(),"mo_chukouwendu"));
-                list.add(getUiItem(this.getMockFields(),"mo_rukouwendu"));
-                list.add(getUiItem(this.getBaseInfoFields(),"ba_guolushuiweizhuangtai"));
-                list.add(getUiItem(this.getBaseInfoFields(),"ba_shuixiangshuiweizhuangtai"));
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.DaoReYou)) {
-                list.add(getUiItem(this.getMockFields(),"mo_paiyanwendu"));
-                list.add(getUiItem(this.getMockFields(),"mo_chukouwendu"));
-                list.add(getUiItem(this.getMockFields(),"mo_rukouwendu"));
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ReFeng)) {
-                list.add(getUiItem(this.getMockFields(),"mo_chukouwendu"));
-                list.add(getUiItem(this.getDeviceFields(),"de_ranshaoqi"));
-                list.add(getUiItem(this.getDeviceFields(),"de_yinfengji"));
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ZhengQi)) {
-                list.add(getUiItem(this.getBaseInfoFields(),"ba_guolushuiweizhuangtai"));
-                list.add(getUiItem(this.getMockFields(),"mo_paiyanwendu"));
+        } else if (this.powerVal== Power.YouQi) {
+            if (this.mediaVal == Media.ReShui) {
+                list.add(getUiItem(this.getMockFields(), "mo_paiyanwendu"));
+                list.add(getUiItem(this.getMockFields(), "mo_chukouwendu"));
+                list.add(getUiItem(this.getMockFields(), "mo_rukouwendu"));
+                list.add(getUiItem(this.getBaseInfoFields(), "ba_guolushuiweizhuangtai"));
+                list.add(getUiItem(this.getBaseInfoFields(), "ba_shuixiangshuiweizhuangtai"));
+            } else if (this.mediaVal == Media.DaoReYou) {
+                list.add(getUiItem(this.getMockFields(), "mo_paiyanwendu"));
+                list.add(getUiItem(this.getMockFields(), "mo_chukouwendu"));
+                list.add(getUiItem(this.getMockFields(), "mo_rukouwendu"));
+            } else if (this.mediaVal == Media.ReFeng) {
+                list.add(getUiItem(this.getMockFields(), "mo_chukouwendu"));
+                list.add(getUiItem(this.getDeviceFields(), "de_ranshaoqi"));
+                list.add(getUiItem(this.getDeviceFields(), "de_yinfengji"));
+            } else if (this.mediaVal == Media.ZhengQi) {
+                list.add(getUiItem(this.getBaseInfoFields(), "ba_guolushuiweizhuangtai"));
+                list.add(getUiItem(this.getMockFields(), "mo_paiyanwendu"));
 
                 if (this.getBaseInfoFields().containsKey("ba_guoluyalizhuangtai")) {
                     list.add(this.getBaseInfoFields().get("ba_guoluyalizhuangtai"));
                 } else {
-                    list.add(getUiItem(this.getMockFields(),"mo_zhengqiyali"));
+                    list.add(getUiItem(this.getMockFields(), "mo_zhengqiyali"));
                 }
 
-            } else if (map.get(SdcSoftDevice.KEY_POINT_MEDIA).getValue().equals(Media.ZhenKong)) {
-                list.add(getUiItem(this.getMockFields(),"mo_paiyanwendu"));
-                list.add(getUiItem(this.getMockFields(),"mo_chukouwendu"));
-                list.add(getUiItem(this.getMockFields(),"mo_meishuiwendu"));
-                list.add(getUiItem(this.getBaseInfoFields(),"ba_guolushuiweizhuangtai"));
+            } else if (this.mediaVal == Media.ZhenKong) {
+                list.add(getUiItem(this.getMockFields(), "mo_paiyanwendu"));
+                list.add(getUiItem(this.getMockFields(), "mo_chukouwendu"));
+                list.add(getUiItem(this.getMockFields(), "mo_meishuiwendu"));
+                list.add(getUiItem(this.getBaseInfoFields(), "ba_guolushuiweizhuangtai"));
                 if (this.getBaseInfoFields().containsKey("ba_guoluyalizhuangtai")) {
                     list.add(this.getBaseInfoFields().get("ba_guoluyalizhuangtai"));
                 } else {
-                    list.add(getUiItem(this.getMockFields(),"mo_zhengqiyali"));
+                    list.add(getUiItem(this.getMockFields(), "mo_zhengqiyali"));
                 }
 
             }
@@ -146,46 +145,39 @@ public class Device_CTL_NJZJ_IPK2 extends Device_CTL {
     }
 
     @Override
-    protected DeviceFieldForUI getPowerInfo() {
-        DeviceFieldForUI power = getBaseInfoFields().get(KEY_POINT_POWER);
-        if (power.getValue().equals(Power.Dian))
-        {
-            return getSettingFields().get(KEY_POINT_JIA_RE_ZU);
+    protected int getPowerInfo() {
+        if (this.powerVal == Power.Dian) {
+            return ((Float) getSettingFields().get(KEY_POINT_JIA_RE_ZU).getValue()).intValue() > 0 ? 1 : 0;
+        } else if (this.powerVal == Power.Mei) {
+            return (Integer) getDeviceFields().get(KEY_POINT_YIN_FENG_JI).getValue() > 0x7F ? 1 : 0;
         }
-        else if (power.getValue().equals(Power.Mei))
-        {
-            return getDeviceFields().get(KEY_POINT_YIN_FENG_JI);
-        }
-        return getDeviceFields().get(KEY_POINT_RAN_SHAO_QI);
-    }
-    @Override
-    public List<Element> getBeng() {
-        return getElements(Device_Suffix_Beng,Element.Prefix_Beng,Element.Index_Beng_Count);
-    }
-    @Override
-    public List<Element> getFan() {
-        return getElements(Device_Suffix_Fan,Element.Prefix_Fan,Element.Index_Fan_Count);
+        return (Integer) getDeviceFields().get(KEY_POINT_RAN_SHAO_QI).getValue();
     }
 
-    private  List<Element> getElements(String deviceSuffix,String elementPrefix,int valueIndex){
+    @Override
+    public List<Element> getBeng() {
+        return getElements(Device_Suffix_Beng, Element.Prefix_Beng, Element.Index_Beng_Count);
+    }
+
+    @Override
+    public List<Element> getFan() {
+        return getElements(Device_Suffix_Fan, Element.Prefix_Fan, Element.Index_Fan_Count);
+    }
+
+    private List<Element> getElements(String deviceSuffix, String elementPrefix, int valueIndex) {
         List<Element> list = new ArrayList<Element>();
-        for(DeviceFieldForUI device : getDeviceFields().values())
-        {
-            if (device.getName().contains(deviceSuffix))
-            {
+        for (DeviceFieldForUI device : getDeviceFields().values()) {
+            if (device.getName().contains(deviceSuffix)) {
                 Element element = new Element();
                 element.setTitle(device.getTitle());
                 element.setPrefix(elementPrefix);
 
-                int value = (Integer)device.getValue();
+                int value = (Integer) device.getValue();
                 int v = value & 0x80;
 
-                if (0x80 == v)
-                {
-                   element.SetValues(valueIndex, 1,1);
-                }
-                else
-                {
+                if (0x80 == v) {
+                    element.SetValues(valueIndex, 1, 1);
+                } else {
                     element.SetValues(valueIndex, 1, 0);
                 }
                 list.add(element);

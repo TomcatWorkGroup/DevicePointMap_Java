@@ -1,5 +1,7 @@
 package cn.com.sdcsoft.devices.meta;
 
+import cn.com.sdcsoft.devices.SdcSoftDevice;
+
 import java.util.HashMap;
 
 /**
@@ -87,11 +89,15 @@ public abstract class ByteField {
 
     public abstract Object getValue();
 
+    public String getValueBitString(){
+        return String.format("%d",getValue());
+    }
     public abstract boolean haveValue(byte... bytes);
 
     public String getValueString() {
         if (bytesLength > 0){//bytesLength>0表示点位在数据中真实存储
-            return String.format("%s%s",getValue().toString(), getUnit());
+//            return String.format("%s%s",getValue().toString(), getUnit());
+            return String.format("%s%s",getValueBitString(), getUnit());
         }
         //点位并不真实存在，而又其他点位计算而来。如NJRT_T2的运行天数和小时数 由运行总时间计算得出
         needFormat = true;
@@ -102,9 +108,24 @@ public abstract class ByteField {
 //        return String.format("%%s%s", getValue().toString(), getUnit());
 //    }
 
-    public DeviceFieldForUI getDeviceFieldForUI() {
+    public DeviceFieldForUI getDeviceFieldForUI()
+    {
         DeviceFieldForUI fieldForUI = new DeviceFieldForUI();
-        setDeviceFieldForUIKey(fieldForUI);
+        if(bytesLength < 1)//如果是要计算的点位对象
+        {
+            if (isShow())//如果要显示，则该点位对象为其类型所对应的key，该计算点位将包含在SdcsoftDevice对应的List集合中
+            {
+                setDeviceFieldForUIKey(fieldForUI);
+            }
+            else //如果无需显示，则该点位对象的key设置为SdcSoftDevice.KEY_Count_Fields，该点位将包含在该key对应的SdcsoftDevice的List集合中
+            {
+                fieldForUI.setKey(SdcSoftDevice.KEY_Count_Fields);
+            }
+        }
+        else
+        {
+            setDeviceFieldForUIKey(fieldForUI);
+        }
         fieldForUI.setName(getName());
         fieldForUI.setTitle(getTitle());
         fieldForUI.setValue(getValue());

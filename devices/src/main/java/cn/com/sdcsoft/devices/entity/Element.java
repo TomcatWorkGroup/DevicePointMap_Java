@@ -57,17 +57,24 @@ public class Element {
     }
     public String getElementPrefixAndValuesString()
     {
+        return getElementPrefixAndValuesString("-");
+    }
+    public String getElementPrefixAndValuesString(String spacerString)
+    {
         StringBuilder sb = new StringBuilder();
         sb.append(prefix);
         for(int i : values)
         {
             if(i > -1)
             {
-                sb.append('-');
+                sb.append(spacerString);
                 sb.append(i);
                 continue;
             }
             break;
+        }
+        if(prefix.equals(Prefix_Stove)){
+            sb.replace(6,7,"%s");
         }
         return sb.toString();
     }

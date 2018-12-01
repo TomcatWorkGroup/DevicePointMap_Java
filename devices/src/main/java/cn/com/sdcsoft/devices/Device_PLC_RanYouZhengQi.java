@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Device_PLC_RanYouZhengQi extends Device_PLC {
+public class Device_PLC_RanYouZhengQi extends Device_PLC_RanYou {
     public Device_PLC_RanYouZhengQi()
     {
         BYTE_ARRAY_LENGTH = 490;
@@ -30,14 +30,6 @@ public class Device_PLC_RanYouZhengQi extends Device_PLC {
         }
 
         return list;
-    }
-
-    private static final String KEY_POINT_RAN_SHAO_QI_STATUS = "ba_ranshaoqizhuangtai";
-
-    @Override
-    protected DeviceFieldForUI getPowerInfo()
-    {
-        return getBaseInfoFields().get(KEY_POINT_RAN_SHAO_QI_STATUS);
     }
 }
 

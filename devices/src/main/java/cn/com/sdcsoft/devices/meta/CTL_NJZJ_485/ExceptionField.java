@@ -8,6 +8,11 @@ public class ExceptionField extends cn.com.sdcsoft.devices.meta.ExceptionField {
     @Override
     public boolean haveValue(byte... bytes) {
         value = bytes[1] & 0xFF | (bytes[0] & 0xFF) << 8;
-        return 0x7FFF != value;
+//        if(this.getTitle().equals("关键参数异常")){
+//            System.out.println("");
+//        }
+        if(0x7FFF == value)
+            return false ;
+        return 0x5555 != value;
     }
 }

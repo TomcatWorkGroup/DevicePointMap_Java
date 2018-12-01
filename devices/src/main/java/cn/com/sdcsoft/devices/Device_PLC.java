@@ -54,7 +54,10 @@ public abstract class Device_PLC extends SdcSoftDevice {
     public void handleByteField(ByteField field, byte[] bytes) {
         switch (field.getBytesLength()) {
             case 0:
-                this.AddField(field.getDeviceFieldForUI());
+                if(field.haveValue(bytes[field.getStartIndex()], bytes[field.getStartIndex() + 1]))
+                {
+                    this.AddField(field.getDeviceFieldForUI());
+                }
                 break;
             case 2:
                 if (field.haveValue(bytes[field.getStartIndex()], bytes[field.getStartIndex() + 1])) {
@@ -301,54 +304,7 @@ public abstract class Device_PLC extends SdcSoftDevice {
                     break;
             }
         }
-        if (getCountFields().containsKey(KEY_POINT_LU_PAI_FAN))
-        {
-            DeviceFieldForUI deviceFieldForUI = getCountFields().get(KEY_POINT_LU_PAI_FAN);
-            Element element = new Element();
-            element.setTitle(deviceFieldForUI.getTitle());
-            element.setPrefix(Element.Prefix_Fan);
-            DeviceFieldForUI d1 = null;
-            int count = 0;
-            if (getDeviceFields().containsKey(KEY_POINT_LU_PAI_FAN_1))
-            {
-                d1 = getDeviceFields().get(KEY_POINT_LU_PAI_FAN_1);
-                count = 1;
-            }
-            int v1 = 0;
-            switch (count)
-            {
-                case 1:
-                    v1 = (Integer) d1.getValue() > 0 ? 1 : 0;
-                    element.SetValues(Element.Index_Fan_Count, 1, v1);
-                    list.add(element);
-                    break;
-            }
-        }
 
-        if (getCountFields().containsKey(KEY_POINT_CHU_ZHA_FAN))
-        {
-            DeviceFieldForUI deviceFieldForUI = getCountFields().get(KEY_POINT_CHU_ZHA_FAN);
-            Element element = new Element();
-            element.setTitle(deviceFieldForUI.getTitle());
-            element.setPrefix(Element.Prefix_Fan);
-
-            DeviceFieldForUI d1 = null;
-            int count = 0;
-            if (getDeviceFields().containsKey(KEY_POINT_CHU_ZHA_FAN_1))
-            {
-                d1 = getDeviceFields().get(KEY_POINT_CHU_ZHA_FAN_1);
-                count = 1;
-            }
-            int v1 = 0;
-            switch (count)
-            {
-                case 1:
-                    v1 = (Integer) d1.getValue() > 0 ? 1 : 0;
-                    element.SetValues(Element.Index_Fan_Count, 1, v1);
-                    list.add(element);
-                    break;
-            }
-        }
         return list;
     }
 
@@ -429,6 +385,54 @@ public abstract class Device_PLC extends SdcSoftDevice {
                     v1 = (Integer) d1.getValue() > 0 ? 1 : 0;
                     v2 = (Integer) d2.getValue() > 0 ? 2 : 0;
                     element.SetValues(Element.Index_Fan_Count, 2, v1 + v2);
+                    list.add(element);
+                    break;
+            }
+        }
+        if (getCountFields().containsKey(KEY_POINT_LU_PAI_FAN))
+        {
+            DeviceFieldForUI deviceFieldForUI = getCountFields().get(KEY_POINT_LU_PAI_FAN);
+            Element element = new Element();
+            element.setTitle(deviceFieldForUI.getTitle());
+            element.setPrefix(Element.Prefix_Fan);
+            DeviceFieldForUI d1 = null;
+            int count = 0;
+            if (getDeviceFields().containsKey(KEY_POINT_LU_PAI_FAN_1))
+            {
+                d1 = getDeviceFields().get(KEY_POINT_LU_PAI_FAN_1);
+                count = 1;
+            }
+            int v1 = 0;
+            switch (count)
+            {
+                case 1:
+                    v1 = (Integer) d1.getValue() > 0 ? 1 : 0;
+                    element.SetValues(Element.Index_Fan_Count, 1, v1);
+                    list.add(element);
+                    break;
+            }
+        }
+
+        if (getCountFields().containsKey(KEY_POINT_CHU_ZHA_FAN))
+        {
+            DeviceFieldForUI deviceFieldForUI = getCountFields().get(KEY_POINT_CHU_ZHA_FAN);
+            Element element = new Element();
+            element.setTitle(deviceFieldForUI.getTitle());
+            element.setPrefix(Element.Prefix_Fan);
+
+            DeviceFieldForUI d1 = null;
+            int count = 0;
+            if (getDeviceFields().containsKey(KEY_POINT_CHU_ZHA_FAN_1))
+            {
+                d1 = getDeviceFields().get(KEY_POINT_CHU_ZHA_FAN_1);
+                count = 1;
+            }
+            int v1 = 0;
+            switch (count)
+            {
+                case 1:
+                    v1 = (Integer) d1.getValue() > 0 ? 1 : 0;
+                    element.SetValues(Element.Index_Fan_Count, 1, v1);
                     list.add(element);
                     break;
             }

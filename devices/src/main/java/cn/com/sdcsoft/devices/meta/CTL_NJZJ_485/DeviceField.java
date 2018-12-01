@@ -10,7 +10,9 @@ public class DeviceField extends cn.com.sdcsoft.devices.meta.DeviceField {
     @Override
     public boolean haveValue(byte... bytes) {
         value = bytes[1] & 0xFF | (bytes[0] & 0xFF) << 8;
-
+        if("引风机"== this.getTitle()){
+            System.out.println("");
+        }
         if (0x7FFF == value)
             return false;
 

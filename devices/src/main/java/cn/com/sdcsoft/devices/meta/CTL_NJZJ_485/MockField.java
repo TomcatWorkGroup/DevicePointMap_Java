@@ -10,7 +10,7 @@ public class MockField extends cn.com.sdcsoft.devices.meta.MockField {
 
     @Override
     public boolean haveValue(byte... bytes) {
-        BigInteger i = new BigInteger(bytes);
+       BigInteger i = new BigInteger(bytes);
 
         if(0x7FFF == i.intValue())
             return false;
