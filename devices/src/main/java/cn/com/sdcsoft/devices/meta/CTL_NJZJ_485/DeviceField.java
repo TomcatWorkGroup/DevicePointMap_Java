@@ -10,11 +10,12 @@ public class DeviceField extends cn.com.sdcsoft.devices.meta.DeviceField {
     @Override
     public boolean haveValue(byte... bytes) {
         value = bytes[1] & 0xFF | (bytes[0] & 0xFF) << 8;
-        if("引风机"== this.getTitle()){
-            System.out.println("");
-        }
+//        if("循环泵"== this.getTitle()){
+//            System.out.println("");
+//        }
         if (0x7FFF == value)
             return false;
+        value = 0;
 
         sb.setLength(0);
         if (null != valueMap) {
@@ -37,12 +38,12 @@ public class DeviceField extends cn.com.sdcsoft.devices.meta.DeviceField {
             v = (bytes[0] &0xFF) | 0xF0;
             if (0x0F == (v & 0x0F)) {
                 sb.append(valueMap.get(0x0F));
+                value = (bytes[1] | 0x80) & 0xFF;//最高位补1，表示设备为运行状态
             } else {
                 sb.append(valueMap.get(0xF0));
+                value = bytes[1] & 0xFF;
             }
         }
-
-        value = bytes[1] & 0xFF;
         return true;
     }
 
