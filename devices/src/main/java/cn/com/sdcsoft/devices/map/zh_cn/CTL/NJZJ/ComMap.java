@@ -1,19 +1,13 @@
-package cn.com.sdcsoft.devices.map.zh_cn;
-
+package cn.com.sdcsoft.devices.map.zh_cn.CTL.NJZJ;
 
 import cn.com.sdcsoft.devices.SdcSoftDevice;
 import cn.com.sdcsoft.devices.map.zh_cn.DevicePointMap;
 import cn.com.sdcsoft.devices.meta.ByteField;
 import cn.com.sdcsoft.devices.meta.CTL_NJZJ_485.*;
 
+public class ComMap extends DevicePointMap {
 
-/**
- * Created by jialiang on 2018/4/20.
- */
-
-public class DevicePointMap_CTL_NJZJ_IPT2_485 extends DevicePointMap {
-
-    public DevicePointMap_CTL_NJZJ_IPT2_485() {
+    public ComMap() {
         //基本信息 010306000028455C
         map.put(SdcSoftDevice.KEY_POINT_SYSTEM_STATUS, ByteField.Init(new BaseInfoField(), SdcSoftDevice.KEY_POINT_SYSTEM_STATUS, 7, 2, "系统状态", CTL_NJZJ_Common_ValueMaps.coms_status));
 
